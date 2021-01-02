@@ -122,8 +122,12 @@ struct Bill: View {
     let Bhours : Int
     let bmobile : String
     let Btotal : Double
+    @State var btnname = "إدفع الآن"
+    @State var btnclr = Color.blue
+    
+    
     var body: some View {
-        
+    
         VStack(spacing: 30)
         {
             HStack{
@@ -154,11 +158,17 @@ struct Bill: View {
             //            could be a button or could be a text with on tap gesture, tried both but
             //            it seems like i'm doing something wrong or overcomplicating it.
             
-            Text("ادفع الآن")
-                .frame(width: 350, height: 75, alignment: .center)
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                Text(btnname)
+                    .frame(width: 350, height: 75, alignment: .center)
+                    .background(btnclr)
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                    .onTapGesture {
+                        self.btnname = "تم الدفع"
+                        self.btnclr = Color.green
+                    }
+//            to change states easily just create vars with any kind of option u like, "objects"
+//            then "self.varname = bla bla" and then input the new data u would like to implement
             
         }
         .padding(.horizontal)
@@ -170,7 +180,7 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView()
             //                        BikeReserve(bike: "Bicycle")
-            //                        Bill(Bname: "test", Bhours: 3, bmobile: "test2", Btotal: 23.0)
+                                    Bill(Bname: "test", Bhours: 3, bmobile: "test2", Btotal: 23.0)
         }
     }
 }
